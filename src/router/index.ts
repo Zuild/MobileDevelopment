@@ -1,39 +1,38 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
-import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../views/TabsPage.vue'
+import { createRouter, createWebHistory } from '@ionic/vue-router'
+import { RouteRecordRaw } from 'vue-router'
+import Footer from '../views/Footer.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/tab1'
+    redirect: '/signin',
+  },
+  {
+    path: '/signin',
+    name: 'signin',
+    component: () => import('@/views/signin/index.vue'),
   },
   {
     path: '/tabs/',
-    component: TabsPage,
+    component: Footer,
     children: [
       {
-        path: '',
-        redirect: '/tabs/tab1'
+        path: 'home',
+        name: 'home',
+        component: () => import('@/views/home/index.vue'),
       },
       {
-        path: 'tab1',
-        component: () => import('@/views/Tab1Page.vue')
+        path: 'profile',
+        name: 'profile',
+        component: () => import('@/views/profile/index.vue'),
       },
-      {
-        path: 'tab2',
-        component: () => import('@/views/Tab2Page.vue')
-      },
-      {
-        path: 'tab3',
-        component: () => import('@/views/Tab3Page.vue')
-      }
-    ]
-  }
+    ],
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
 })
 
 export default router
