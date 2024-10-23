@@ -13,6 +13,27 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/signin/index.vue'),
   },
   {
+    path: '/cards',
+    name: 'cards',
+    component: () => import('@/views/Cards/index.vue'),
+  },
+  {
+    path: '/modal',
+    name: 'modal',
+    component: () => import('@/views/Modal/index.vue'),
+  },
+  {
+    path: '/reorder',
+    name: 'reorder',
+    component: () => import('@/views/reorder/index.vue'),
+  },
+  {
+    path: '/float',
+    name: 'float',
+    component: () => import('@/views/FloatingButton/index.vue'),
+  },
+
+  {
     path: '/tabs/',
     component: Footer,
     children: [
