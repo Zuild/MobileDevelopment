@@ -32,6 +32,26 @@ const routes: Array<RouteRecordRaw> = [
     name: 'float',
     component: () => import('@/views/FloatingButton/index.vue'),
   },
+  {
+    path: '/swiper',
+    name: 'swiper',
+    component: () => import('@/views/swiper/index.vue'),
+  },
+  {
+    path: '/swiperloop',
+    name: 'swiperloop',
+    component: () => import('@/views/swiperloop/index.vue'),
+  },
+  {
+    path: '/localstorage',
+    name: 'localstorage',
+    component: () => import('@/views/localstorage/index.vue'),
+  },
+  {
+    path: '/map',
+    name: 'map',
+    component: () => import('@/views/map/index.vue'),
+  },
 
   {
     path: '/tabs/',
