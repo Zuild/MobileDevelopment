@@ -52,7 +52,16 @@ const routes: Array<RouteRecordRaw> = [
     name: 'map',
     component: () => import('@/views/map/index.vue'),
   },
-
+  {
+    path: '/geolocation',
+    name: 'geolocation',
+    component: () => import('@/views/geolocation/index.vue'),
+  },
+  {
+    path: '/camera',
+    name: 'camera',
+    component: () => import('@/views/camera/index.vue'),
+  },
   {
     path: '/tabs/',
     component: Footer,

@@ -64,16 +64,46 @@
             <p>Learn how to implement device storage</p>
           </ion-label>
         </ion-item>
-        <ion-item :button="true" @click="CardScreen()">
+        <ion-item
+          button
+          detail="true"
+          @click="
+            () => {
+              $router.push('/map')
+            }
+          "
+        >
           <ion-label>
-            <h2>Activity 1: Swiper Slider</h2>
-            <p>Learn how to implement slider</p>
+            <h2>Activity 4: Map Implementation</h2>
+            <p>Learn how to implement map in ionic</p>
           </ion-label>
         </ion-item>
-        <ion-item :button="true" @click="CardScreen()">
+        <ion-item
+          button
+          detail="true"
+          @click="
+            () => {
+              $router.push('/geolocation')
+            }
+          "
+        >
           <ion-label>
-            <h2>Activity 1: Swiper Slider</h2>
-            <p>Learn how to implement slider</p>
+            <h2>Activity 5: GPS|Geo Location</h2>
+            <p>Get Latitude and Longitude</p>
+          </ion-label>
+        </ion-item>
+        <ion-item
+          button
+          detail="true"
+          @click="
+            () => {
+              $router.push('/camera')
+            }
+          "
+        >
+          <ion-label>
+            <h2>Activity 6: Camera Implementation</h2>
+            <p>Learn how to camera in ionic</p>
           </ion-label>
         </ion-item>
       </ion-list>

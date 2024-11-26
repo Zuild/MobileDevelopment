@@ -2,11 +2,23 @@
   <ion-page>
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title> Map </ion-title>
+        <ion-title> Geolocation </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <div id="map"></div>
+      <div class="p-3">
+        <button class="btn btn-primary btn-lg w-100" @click="getGeo">
+          Get Geolocation
+        </button>
+        <div class="mt-4">
+          <p>Latitude</p>
+          <input v-model="coords.latitude" class="form-control" type="text" />
+        </div>
+        <div class="mt-4">
+          <p>Longitude</p>
+          <input v-model="coords.longitude" class="form-control" type="text" />
+        </div>
+      </div>
     </ion-content>
     <ion-footer>
       <ion-toolbar class="p-1">
@@ -29,9 +41,6 @@
   </ion-page>
 </template>
 <script lang="ts">
-/**
- * API key: AIzaSyA7nyAevnZcR1GncVAydyO9Nkip0JCBnb8
- */
 import { defineComponent } from 'vue'
 import {
   IonToolbar,
@@ -48,10 +57,10 @@ import {
   IonTabs,
 } from '@ionic/vue'
 import { home, person } from 'ionicons/icons'
-import { GoogleMap } from '@capacitor/google-maps'
+import { Geolocation } from '@capacitor/geolocation'
 
 export default defineComponent({
-  name: 'g-mapScreen',
+  name: 'MapScreen',
   components: {
     IonToolbar,
     IonPage,
@@ -68,29 +77,15 @@ export default defineComponent({
   },
   data() {
     return {
-      apiKey: 'AIzaSyA7nyAevnZcR1GncVAydyO9Nkip0JCBnb8',
+      coords: {} as any,
     }
   },
   methods: {
-    async initMap() {
-      const mapRef = document.getElementById('map') as HTMLElement
-
-      const newMap = await GoogleMap.create({
-        id: 'my-map',
-        element: mapRef,
-        apiKey: this.apiKey,
-        config: {
-          center: {
-            lat: 10.232030029445621,
-            lng: 123.7801877922797,
-          },
-          zoom: 25,
-        },
-      })
+    async getGeo() {
+      const coordinates = await Geolocation.getCurrentPosition()
+      this.coords = coordinates.coords
+      console.log(coordinates.coords)
     },
-  },
-  async mounted() {
-    this.initMap()
   },
   setup() {
     return {

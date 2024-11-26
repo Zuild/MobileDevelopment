@@ -2,11 +2,15 @@
   <ion-page>
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title> Map </ion-title>
+        <ion-title> Camera </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <div id="map"></div>
+      <div class="p-3">
+        <button class="btn btn-primary btn-lg w-100" @click="takePhoto">
+          Take Photo
+        </button>
+      </div>
     </ion-content>
     <ion-footer>
       <ion-toolbar class="p-1">
@@ -29,9 +33,6 @@
   </ion-page>
 </template>
 <script lang="ts">
-/**
- * API key: AIzaSyA7nyAevnZcR1GncVAydyO9Nkip0JCBnb8
- */
 import { defineComponent } from 'vue'
 import {
   IonToolbar,
@@ -48,10 +49,10 @@ import {
   IonTabs,
 } from '@ionic/vue'
 import { home, person } from 'ionicons/icons'
-import { GoogleMap } from '@capacitor/google-maps'
+import { Camera, CameraResultType } from '@capacitor/camera'
 
 export default defineComponent({
-  name: 'g-mapScreen',
+  name: 'CameraScreen',
   components: {
     IonToolbar,
     IonPage,
@@ -67,31 +68,21 @@ export default defineComponent({
     IonTabs,
   },
   data() {
-    return {
-      apiKey: 'AIzaSyA7nyAevnZcR1GncVAydyO9Nkip0JCBnb8',
-    }
+    return {}
   },
   methods: {
-    async initMap() {
-      const mapRef = document.getElementById('map') as HTMLElement
-
-      const newMap = await GoogleMap.create({
-        id: 'my-map',
-        element: mapRef,
-        apiKey: this.apiKey,
-        config: {
-          center: {
-            lat: 10.232030029445621,
-            lng: 123.7801877922797,
-          },
-          zoom: 25,
-        },
+    async takePhoto() {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Uri,
       })
+
+      var imageUrl = image.webPath
+      imageElement.src = imageUrl
     },
   },
-  async mounted() {
-    this.initMap()
-  },
+
   setup() {
     return {
       home,
