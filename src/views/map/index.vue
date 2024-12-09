@@ -68,7 +68,7 @@ export default defineComponent({
   },
   data() {
     return {
-      apiKey: 'AIzaSyA7nyAevnZcR1GncVAydyO9Nkip0JCBnb8',
+      apiKey: 'PRIVATE',
     }
   },
   methods: {
